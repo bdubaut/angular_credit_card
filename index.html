@@ -3,23 +3,24 @@
 <head>
 	<title>Angular.js credit card validation</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" ></script>
-	<script src="js/angular.min.js"></script>
+	 <!-- // <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script> -->
+	 <script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 </head>
 <body>
 	<div class="container">
 		<h1>Angular.js Exercice: Credit card validator</h1>
-		<p>Tries: {{ 4 }}</p>
 		<div class="col-md-4">
-			<form name="ccform" ng-controller="ccControler as cc" ng-submit="cc.proceed" novalidate>
+			<form name="ccform"  novalidate>
 				<div class="form-group row">
-					<label for="ccnumber" >Credit card number: </label><input name="ccnumber" type="text" id="ccnumber" class="form-control" required>
+					<label for="ccnumber" >Credit card number: </label><input name="ccnumber" type="text" id="ccnumber" class="form-control" ng-model="ccnumber" placeholder="Credit card number" required>
+					<span>{{ ccnumber }} is a valid credit card: {{ ccnumber | validate }}</span>
 				</div>
 				<div class="form-group row" >
 					<label for="expdate">Expiration date: </label><input name="expdate" type="text" id="expdate" class="form-control" required>
 				</div>
 				<div class="form-group row">
-					<button class="btn btn-success" disabled>Submit</button>
+					<button id="submit" class="btn btn-success" disabled>Submit</button>
 				</div>
 			</form>
 		</div>

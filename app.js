@@ -40,4 +40,15 @@ angular.module('validate-cc', []).filter('validate', [function () {
     };
     return validIndicator
 	}
+}]);
+
+/**
+* validate-expiry-date Module
+*
+* Validates the date format and that the date is not in the past
+*/
+angular.module('validate-expiry-date', []).filter('validDate', [function () {
+  return function (date) {
+    if (!date) {return false};
+  }
 }])

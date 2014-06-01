@@ -3,16 +3,19 @@
 <head>
 	<title>Angular.js credit card validation</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" ></script>
-	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+	 <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    -->
+    <script src="js/angular.min.js" ></script>
 	<script type="text/javascript" src="app.js"></script>
 </head>
 <body>
 	<div class="container">
-		<h1>Angular.js Exercice: Credit card validator</h1>
-		<div class="col-md-4">
+		<h1>Angular.js Exercice:</h1>
+    <h2>Credit card validator</h2>
+		<div class="col-md-4 jumbotron">
 			<form name="ccform"  novalidate>
       <div class="row">
-        Card type: <img ng-src="{{ccnumber | validate}}" alt="Valid credit card">
+        <b>Card type: </b><img ng-src="{{ccnumber | validate}}" alt="Valid credit card">
       </div>
       <br>
 				<div class="form-group row">

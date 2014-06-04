@@ -2,10 +2,9 @@
 <html ng-app="ccvalidator">
 <head>
 	<title>Angular.js credit card validation</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" ></script>
-	 <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-    -->
-    <script src="js/angular.min.js" ></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
+	<link rel="stylesheet" type="text/css" href="css/custom-style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 </head>
 <body>
@@ -13,7 +12,7 @@
 		<h1>Angular.js Exercice:</h1>
     <h2>Credit card validator</h2>
 		<div class="col-md-4 jumbotron">
-			<form name="ccform"  novalidate>
+			<form name="ccform" ng-submit="ccform.$valid"  novalidate>
       <div class="row">
         <b>Card type: </b><img ng-src="{{ccnumber | validate}}" alt="Valid credit card">
       </div>
@@ -24,6 +23,7 @@
 				<div class="form-group row" >
 					<label for="expdate">Expiration date: </label><input name="expdate" type="text" id="expdate" class="form-control" placeholder="Expiration date" required>
 				</div>
+				<span>{{ expdate | validDate }}</span>
 				<div class="form-group row">
 					<button id="submit" class="btn btn-success" disabled>Submit</button>
 				</div>

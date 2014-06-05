@@ -42,6 +42,29 @@ angular.module('validate-cc', []).filter('validate', [function () {
 	}
 }]);
 
+
+function filterSingleDate(date) {
+    var actualDate = new Date();
+    var m,y,d;
+
+    if (/^\d{2}\/\d{2}$/.test(date)) {
+        m = date.substring(0, 2) - 1;
+        y = 20 + date.slice(-2);
+        d = new Date(y,m);
+    } else if (/^\d{2}\/\d{4}$/.test(date)) {
+        m = date.substring(0, 2) - 1;
+        y = date.slice(-4);
+        d = new Date(y,m);
+    } else if (/^\d{4}$/.test(date)) {
+        m = date.substring(0, 2) - 1;
+        y = 20 + date.slice(-2);
+        d = new Date(y,m);
+    }
+
+    return actualDate > d ? '\u2713' : '\u2718';
+}
+
+
 /**
 * validate-expiry-date Module
 *
@@ -49,29 +72,6 @@ angular.module('validate-cc', []).filter('validate', [function () {
 */
 angular.module('validate-expiry-date', []).filter('validDate', [function () {
   return function (date) {
-  	var timeNow = new Date;
-  	var y, m, myDate, result;
-
-    if (!date) {return false};
-
-    if (/^\d{2}\/\d{2}$/.test(date)) {
-    	m = date.substring(0, 2);
-    	y = 20 + date.slice(-2);
-    	myDate = new Date(y, m, 1);
-    } else if (/^\d{2}\/\d{4}$/.test(date)) {
-    	m = date.substring(0, 2);
-    	y = date.slice(-4);
-    	myDate = new Date(y, m, 1);
-    }else if (/^\d{4}$/.test(date)) {
-    	m = date.substring(0, 2);
-    	y = 20 + date.slice(-2);
-    	myDate = new Date(y, m, 1);
-    };
-    if (myDate < timeNow) {
-    	result = true;
-    } else{
-    	result = false;
-    };
-    return result;
-  }
-}])
+    return date.filter(filterSingleDate);
+  };
+}]);

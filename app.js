@@ -61,7 +61,7 @@ function filterSingleDate(date) {
         d = new Date(y,m);
     }
 
-    return actualDate > d ? '\u2713' : '\u2718';
+    return actualDate > d;
 }
 
 
@@ -72,6 +72,30 @@ function filterSingleDate(date) {
 */
 angular.module('validate-expiry-date', []).filter('validDate', [function () {
   return function (date) {
-    return date.filter(filterSingleDate);
+    var validateDate = function (date) {
+      var actualDate = new Date();
+      var m,y,d;
+
+      if (/^\d{2}\/\d{2}$/.test(date)) {
+          m = date.substring(0, 2) - 1;
+          y = 20 + date.slice(-2);
+          d = new Date(y,m);
+      } else if (/^\d{2}\/\d{4}$/.test(date)) {
+          m = date.substring(0, 2) - 1;
+          y = date.slice(-4);
+          d = new Date(y,m);
+      } else if (/^\d{4}$/.test(date)) {
+          m = date.substring(0, 2) - 1;
+          y = 20 + date.slice(-2);
+          d = new Date(y,m);
+      }
+
+      if (actualDate < d) {
+        return '\u2713';
+      } else{
+        return '\u2718';
+      };
+    }
+    return validateDate(date);
   };
 }]);
